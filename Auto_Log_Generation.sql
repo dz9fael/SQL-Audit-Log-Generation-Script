@@ -7,6 +7,7 @@ SET @TriggerLabel = 'Audit' -- Descriptor for generated triggers, should be some
 
 SELECT [TABLE_NAME] INTO #TempTables FROM INFORMATION_SCHEMA.TABLES 
 		WHERE TABLE_SCHEMA = @TargetSchema
+		AND TABLE_TYPE = 'BASE TABLE'
 	  -- Define Table Filters Here
 		AND TABLE_NAME NOT LIKE 'AspNet%'
 		AND TABLE_NAME NOT LIKE '%__RefactorLog%'
