@@ -81,7 +81,7 @@ SELECT @SqlStatement = @SqlStatement
 	+ 'ALTER TABLE ' + QUOTENAME(@AuditSchema) + '.' + QUOTENAME(TABLE_NAME)
 	+ ' ADD [' + UPPER(@AuditSchema) + '_ID] INT CONSTRAINT [PK_' + @AuditSchema + '_' + TABLE_NAME + '] PRIMARY KEY IDENTITY(1,1),' 
 	+ ' [' + UPPER(@AuditSchema) + '_ACTION] [varchar](20) NOT NULL CONSTRAINT [DF_' + @AuditSchema + '_' + TABLE_NAME + '_Action] DEFAULT ''INSERT'',' + 
-	+ ' [' + UPPER(@AuditSchema) + '_TIME] [datetime] NOT NULL CONSTRAINT [DF_' + @AuditSchema + '_' + TABLE_NAME + '_Timestamp] DEFAULT CURRENT_TIMESTAMP' + CHAR(13)
+	+ ' [' + UPPER(@AuditSchema) + '_TIME] [datetimeoffset] NOT NULL CONSTRAINT [DF_' + @AuditSchema + '_' + TABLE_NAME + '_Timestamp] DEFAULT SYSDATETIMEOFFSET()' + CHAR(13)
 	FROM INFORMATION_SCHEMA.TABLES
 		WHERE TABLE_SCHEMA = @AuditSchema
 -- PRINT @SqlStatement
